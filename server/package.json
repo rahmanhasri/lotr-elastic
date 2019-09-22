@@ -1,7 +1,7 @@
 {
   "name": "lotr-elastic",
   "version": "1.0.0",
-  "description": "Full text Elasticsearch using LOTR books",
+  "description": "Full text Elasticsearch using LOTR books Server",
   "main": "load_n_parse.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

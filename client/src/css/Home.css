@@ -1,0 +1,28 @@
+.mui-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+input[type="text"] {
+  text-align: center;
+  font-size: 21px;
+  font-family: 'EB Garamond', Times, serif
+}
+
+h2 {
+  margin-top: 0px;
+}
+
+div p {
+  text-align: center;
+}
+
+
+/* 
+*:not(path):not(g) {
+  color: hsla(210, 100%, 100%, 0.9) !important;
+  background: hsla(210, 100%,  50%, 0.5) !important;
+  outline: solid 0.25rem hsla(210, 100%, 100%, 0.5) !important;
+  box-shadow: none !important;
+} */

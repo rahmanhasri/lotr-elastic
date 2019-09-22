@@ -1,21 +1,21 @@
-const elasticsearch = require('elasticsearch')
+const elasticsearch = require('elasticsearch');
 
-const index = 'library'
-const type = 'novel'
-const port = 9200
-const host = process.env.ES_HOST || 'localhost'
-const client = new elasticsearch.Client({ host: { host, port }})
+const index = 'library';
+const type = 'novel';
+const port = 9200;
+const host = process.env.ES_HOST || 'localhost';
+const client = new elasticsearch.Client({ host: { host, port }});
 
 async function checkConnection() {
-  let isConnected = false
+  let isConnected = false;
   while (!isConnected) {
-    console.log(`Connecting to ES`)
+    console.log(`Connecting to ES`);
     try {
-      const health = await client.cluster.health({})
-      console.log(health)
-      isConnected = true
+      const health = await client.cluster.health({});
+      console.log(health);
+      isConnected = true;
     } catch (error) {
-      console.log(`Connection failed, Retrying ...`, error)
+      console.log(`Connection failed, Retrying ...`, error);
     }
   }
 }
@@ -24,11 +24,11 @@ async function checkConnection() {
 
 async function resetIndex() {
   if(await client.indices.exists({ index })) {
-    await client.indices.delete({ index })
+    await client.indices.delete({ index });
   }
 
-  await client.indices.create({ index })
-  await putBookMapping()
+  await client.indices.create({ index });
+  await putBookMapping();
 }
 
 async function putBookMapping() {
@@ -36,10 +36,10 @@ async function putBookMapping() {
     title: { type: 'keyword' },
     author: { type: 'keyword' },
     location: { type: 'integer' },
-    text: { type: 'text' }
-  }
-  
-  return client.indices.putMapping({ index, type, body: { properties: schema }})
+    text: { type: 'text' },
+  };
+
+  return client.indices.putMapping({ index, type, body: { properties: schema }});
 }
 
 module.exports = {
@@ -47,5 +47,5 @@ module.exports = {
   index,
   type,
   checkConnection,
-  resetIndex
+  resetIndex,
 }
